@@ -1,2 +1,0 @@
-daemonize: daemonize.o
-

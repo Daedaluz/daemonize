@@ -21,7 +21,7 @@
 
 #include "daemonize.h"
 
-const char** program_args;
+char* const* program_args;
 const char* pidf;
 pid_t pid;
 int _stdout;
