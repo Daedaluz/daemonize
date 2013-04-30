@@ -200,7 +200,8 @@ void print_help()
 			"	-r		--chroot	[none]		set root directory\n"
 			"	-h		--help				print this help message\n"
 			"	-b		--babysit	[no]		restart the program if it dies. syslog death.\n"
-			"	-M		--monitor	[no]		monitor the programs resources (implicit babysit)\n");
+			"	-M		--monitor	[no]		monitor the programs resources (implicit babysit)\n"
+			"			--null				redirect stdout and stderr to /dev/null.\n");
 }
 
 int main(int argc, char** argv)
@@ -217,6 +218,7 @@ int main(int argc, char** argv)
 		{"mask", required_argument, 0, 'm'},
 		{"chroot", required_argument, 0, 'r'},
 		{"help", no_argument, 0, 'h'},
+		{"null", no_argument, 0, 0},
 		{0, 0, 0, 0}
 	};
 	if(argc == 1){
@@ -235,6 +237,10 @@ int main(int argc, char** argv)
 		if (c == -1)
 			break;
 		switch(c) {
+			case 0:
+				setstdout("/dev/null");
+				setstderr("/dev/null");
+				break;
 			case 'h':
 				print_help();
 				exit(0);
